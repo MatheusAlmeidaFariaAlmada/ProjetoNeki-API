@@ -35,10 +35,10 @@ public class UserSkillEntity {
 	@Column (name = "skill_id", nullable= false )	
 	private Long SkillId;
 	
-	@OneToMany(mappedBy = "UserSkillEntity")
+	@OneToMany(mappedBy = "userSkillEntity")
 	private List<SkillEntity> skillEntity;
 	
-	@OneToMany(mappedBy = "UserSkillEntity")
+	@OneToMany(mappedBy = "userSkillEntity")
 	private List<UserEntity> userEntity;
 
 	public UserSkillEntity() {
