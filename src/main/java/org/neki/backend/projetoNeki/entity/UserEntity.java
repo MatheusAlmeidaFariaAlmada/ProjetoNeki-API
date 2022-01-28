@@ -1,6 +1,7 @@
 package org.neki.backend.projetoNeki.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,12 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
 	@Id
@@ -29,9 +29,8 @@ public class UserEntity {
 	@Column (name = "last_login_date", nullable= true )
 	private LocalDate lastLoginDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private UserSkillEntity userSkillEntity;
+	@OneToMany(mappedBy = "userEntity")
+	private List<UserEntity> userEntity;
 
 	public UserEntity() {
 		super();
