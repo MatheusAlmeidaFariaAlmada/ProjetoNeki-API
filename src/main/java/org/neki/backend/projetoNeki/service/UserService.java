@@ -1,11 +1,14 @@
 package org.neki.backend.projetoNeki.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.neki.backend.projetoNeki.entity.UserEntity;
 import org.neki.backend.projetoNeki.repository.UserRepository;
 import org.neki.backend.projetoNeki.vo.UserExibirVO;
+import org.neki.backend.projetoNeki.vo.UserInserirVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +29,27 @@ public class UserService {
 			userExibirVO.add(userVO);
 		}
 		return userExibirVO;
+	}
+	
+	// Service inserir
+	public UserExibirVO inserirService (UserInserirVO userInserirVO) {
+		UserEntity user = new UserEntity();
+		
+		user.setLogin(userInserirVO.getLogin());
+		user.setPassword(userInserirVO.getPassword());
+		user.setLastLoginDate(LocalDate.now());
+
+		user = userRepository.save(user);
+		
+		return new UserExibirVO(user);
+	}
+	
+	// Listagem de Skills por id do usuário	
+	public UserExibirVO listarPorIdService(Long id) {
+		Optional<UserEntity> user = userRepository.findById(id);
+		if (!user.isPresent()) {
+			return null;
+		}
+		return new UserExibirVO(user.get());
 	}
 }
