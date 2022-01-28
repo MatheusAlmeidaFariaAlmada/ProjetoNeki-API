@@ -21,7 +21,7 @@ public class SkillEntity {
 	@Id
 	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
 	@ApiModelProperty(value = "Identificador único de habilidade")
-	private Long idSkill;
+	private Long id;
 	
 	@Column (name = "name", length = 100, nullable= false )	
 	@Size(max=100)
@@ -50,21 +50,21 @@ public class SkillEntity {
 		super();
 	}
 
-	public SkillEntity(Long idSkill, String name, String version, String description, String imageUrl) {
+	public SkillEntity(Long id, String name, String version, String description, String imageUrl) {
 		super();
-		this.idSkill = idSkill;
+		this.id = id;
 		this.name = name;
 		this.version = version;
 		this.description = description;
 		this.imageUrl = imageUrl;
 	}
 
-	public Long getIdSkill() {
-		return idSkill;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdSkill(Long idSkill) {
-		this.idSkill = idSkill;
+	public void setIdSkill(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -101,7 +101,7 @@ public class SkillEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, idSkill, imageUrl, name, version);
+		return Objects.hash(description, id, imageUrl, name, version);
 	}
 
 	@Override
@@ -113,14 +113,14 @@ public class SkillEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillEntity other = (SkillEntity) obj;
-		return Objects.equals(description, other.description) && Objects.equals(idSkill, other.idSkill)
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(name, other.name)
 				&& Objects.equals(version, other.version);
 	}
 
 	@Override
 	public String toString() {
-		return "SkillEntity [idSkill=" + idSkill + ", name=" + name + ", version=" + version + ", description="
+		return "SkillEntity [id=" + id + ", name=" + name + ", version=" + version + ", description="
 				+ description + ", imageUrl=" + imageUrl + "]";
 	}
 

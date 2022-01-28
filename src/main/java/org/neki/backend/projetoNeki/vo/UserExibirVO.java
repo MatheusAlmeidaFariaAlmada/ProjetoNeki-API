@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserExibirVO {
 
-	private Long idUser;
+	private Long id;
 	private String login;
 	private String password;
 	@JsonFormat(pattern = "dd-MM-yyyy")
@@ -18,20 +18,28 @@ public class UserExibirVO {
 		super();
 	}
 
+	public UserExibirVO(Long id, String login, String password, LocalDate lastLoginDate) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.lastLoginDate = lastLoginDate;
+	}
+
 	public UserExibirVO(UserEntity userEntity) {
 		super();
-		this.idUser = userEntity.getIdUser();
+		this.id = userEntity.getId();
 		this.login = userEntity.getLogin();
 		this.password = userEntity.getPassword();
 		this.lastLoginDate = userEntity.getLastLoginDate();
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getLogin() {

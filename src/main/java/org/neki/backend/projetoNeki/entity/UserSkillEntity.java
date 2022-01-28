@@ -1,7 +1,6 @@
 package org.neki.backend.projetoNeki.entity;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
