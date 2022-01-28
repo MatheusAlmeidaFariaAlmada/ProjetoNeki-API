@@ -1,2 +1,2 @@
 # ProjetoNeki-API
-Projeto desenvolvido para empresa NEKI.
+Projeto desenvolvido por Matheus Almeida para empresa NEKI.
