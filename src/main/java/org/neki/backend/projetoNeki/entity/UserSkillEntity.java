@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "user_skill")
 public class UserSkillEntity {
@@ -22,12 +24,15 @@ public class UserSkillEntity {
 	private Long idUserSkill;
 	
 	@Column (name = "knowledge_level", nullable= false )	
-	private Long sankhyaId;
+	@ApiModelProperty(value="Nivel de conhecimento")
+	private Long knowledgeLevel;
 	
 	@Column (name = "created_at", nullable= false )
+	@ApiModelProperty(value="Data de criação")
 	private LocalDate created_at;
 	
 	@Column (name = "updated_at", nullable= true )
+	@ApiModelProperty(value="Data de Atualização")
 	private LocalDate updated_at;
 
 	@ManyToOne
@@ -42,14 +47,15 @@ public class UserSkillEntity {
 		super();
 	}
 
-	public UserSkillEntity(Long idUserSkill, Long sankhyaId, LocalDate created_at, LocalDate updated_at,
-			List<SkillEntity> skillEntity, List<UserEntity> userEntity) {
+	public UserSkillEntity(Long idUserSkill, Long knowledgeLevel, LocalDate created_at, LocalDate updated_at,
+			SkillEntity skillEntity, UserEntity userEntity) {
 		super();
 		this.idUserSkill = idUserSkill;
-		this.sankhyaId = sankhyaId;
+		this.knowledgeLevel = knowledgeLevel;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
-
+		this.skillEntity = skillEntity;
+		this.userEntity = userEntity;
 	}
 
 	public Long getIdUserSkill() {
@@ -60,12 +66,12 @@ public class UserSkillEntity {
 		this.idUserSkill = idUserSkill;
 	}
 
-	public Long getSankhyaId() {
-		return sankhyaId;
+	public Long getKnowledgeLevel() {
+		return knowledgeLevel;
 	}
 
-	public void setSankhyaId(Long sankhyaId) {
-		this.sankhyaId = sankhyaId;
+	public void setKnowledgeLevel(Long knowledgeLevel) {
+		this.knowledgeLevel = knowledgeLevel;
 	}
 
 	public LocalDate getCreated_at() {
@@ -84,9 +90,25 @@ public class UserSkillEntity {
 		this.updated_at = updated_at;
 	}
 
+	public SkillEntity getSkillEntity() {
+		return skillEntity;
+	}
+
+	public void setSkillEntity(SkillEntity skillEntity) {
+		this.skillEntity = skillEntity;
+	}
+
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(created_at, idUserSkill, sankhyaId, updated_at);
+		return Objects.hash(created_at, idUserSkill, knowledgeLevel, skillEntity, updated_at, userEntity);
 	}
 
 	@Override
@@ -99,13 +121,16 @@ public class UserSkillEntity {
 			return false;
 		UserSkillEntity other = (UserSkillEntity) obj;
 		return Objects.equals(created_at, other.created_at) && Objects.equals(idUserSkill, other.idUserSkill)
-				&& Objects.equals(sankhyaId, other.sankhyaId) && Objects.equals(updated_at, other.updated_at);
+				&& Objects.equals(knowledgeLevel, other.knowledgeLevel)
+				&& Objects.equals(skillEntity, other.skillEntity) && Objects.equals(updated_at, other.updated_at)
+				&& Objects.equals(userEntity, other.userEntity);
 	}
 
 	@Override
 	public String toString() {
-		return "UserSkillEntity [idUserSkill=" + idUserSkill + ", sankhyaId=" + sankhyaId + ", created_at=" + created_at
-				+ ", updated_at=" + updated_at + "]";
+		return "UserSkillEntity [idUserSkill=" + idUserSkill + ", knowledgeLevel=" + knowledgeLevel + ", created_at="
+				+ created_at + ", updated_at=" + updated_at + ", skillEntity=" + skillEntity + ", userEntity="
+				+ userEntity + "]";
 	}
 	
 }

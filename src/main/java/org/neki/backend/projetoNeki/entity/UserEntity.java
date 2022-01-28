@@ -11,22 +11,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserEntity {
 
 	@Id
 	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
+	@ApiModelProperty(value = "Identificador único do usuário")
 	private Long idUser;
 	
 	@Column (name = "login", length = 12, nullable= false )	
+	@Size(max=12)
+	@ApiModelProperty(value="Login do usuário")
 	private String login;
 	
 	@Column (name = "password", length = 100, nullable= false )	
+	@Size(max=100)
+	@ApiModelProperty(value="Senha do usuário")
 	private String password;
 	
 	@Column (name = "last_login_date", nullable= true )
+	@ApiModelProperty(value="Data de Login")
 	private LocalDate lastLoginDate;
 	
 	@OneToMany(mappedBy = "userEntity")
