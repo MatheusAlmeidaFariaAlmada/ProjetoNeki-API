@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "skill")
@@ -17,18 +20,27 @@ public class SkillEntity {
 
 	@Id
 	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
+	@ApiModelProperty(value = "Identificador único de habilidade")
 	private Long idSkill;
 	
 	@Column (name = "name", length = 100, nullable= false )	
+	@Size(max=100)
+	@ApiModelProperty(value="Nome da habilidade")
 	private String name;
 	
 	@Column (name = "version", length = 10, nullable= true )	
+	@Size(max=10)
+	@ApiModelProperty(value="Versão da habilidade")
 	private String version;
 	
 	@Column (name = "description", length = 255, nullable= false )	
+	@Size(max=255)
+	@ApiModelProperty(value="Descrição da habilidade")
 	private String description;
 	
 	@Column (name = "image_url", length = 100, nullable= true )	
+	@Size(max=100)
+	@ApiModelProperty(value="Imagem da habilidade")
 	private String imageUrl;
 	
 	@OneToMany(mappedBy = "skillEntity")
