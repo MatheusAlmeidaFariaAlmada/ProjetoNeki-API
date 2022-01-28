@@ -1,5 +1,6 @@
 package org.neki.backend.projetoNeki.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,8 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,9 +31,8 @@ public class SkillEntity {
 	@Column (name = "image_url", length = 100, nullable= true )	
 	private String imageUrl;
 	
-	@ManyToOne
-	@JoinColumn(name = "skill_id")
-	private UserSkillEntity userSkillEntity;
+	@OneToMany(mappedBy = "skillEntity")
+	private List<SkillEntity> skillEntity;
 
 	public SkillEntity() {
 		super();

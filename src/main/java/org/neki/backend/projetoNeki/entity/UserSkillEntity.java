@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,34 +29,27 @@ public class UserSkillEntity {
 	
 	@Column (name = "updated_at", nullable= true )
 	private LocalDate updated_at;
+
+	@ManyToOne
+	@JoinColumn(name = "skill_id")
+	private SkillEntity skillEntity;
 	
-	@Column (name = "user_id", nullable= false )	
-	private Long UserId;
-	
-	@Column (name = "skill_id", nullable= false )	
-	private Long SkillId;
-	
-	@OneToMany(mappedBy = "userSkillEntity")
-	private List<SkillEntity> skillEntity;
-	
-	@OneToMany(mappedBy = "userSkillEntity")
-	private List<UserEntity> userEntity;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private UserEntity userEntity;
 
 	public UserSkillEntity() {
 		super();
 	}
 
-	public UserSkillEntity(Long idUserSkill, Long sankhyaId, LocalDate created_at, LocalDate updated_at, Long userId,
-			Long skillId, List<SkillEntity> skillEntity, List<UserEntity> userEntity) {
+	public UserSkillEntity(Long idUserSkill, Long sankhyaId, LocalDate created_at, LocalDate updated_at,
+			List<SkillEntity> skillEntity, List<UserEntity> userEntity) {
 		super();
 		this.idUserSkill = idUserSkill;
 		this.sankhyaId = sankhyaId;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
-		UserId = userId;
-		SkillId = skillId;
-		this.skillEntity = skillEntity;
-		this.userEntity = userEntity;
+
 	}
 
 	public Long getIdUserSkill() {
@@ -90,41 +84,9 @@ public class UserSkillEntity {
 		this.updated_at = updated_at;
 	}
 
-	public Long getUserId() {
-		return UserId;
-	}
-
-	public void setUserId(Long userId) {
-		UserId = userId;
-	}
-
-	public Long getSkillId() {
-		return SkillId;
-	}
-
-	public void setSkillId(Long skillId) {
-		SkillId = skillId;
-	}
-
-	public List<SkillEntity> getSkillEntity() {
-		return skillEntity;
-	}
-
-	public void setSkillEntity(List<SkillEntity> skillEntity) {
-		this.skillEntity = skillEntity;
-	}
-
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
-	}
-
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(SkillId, UserId, created_at, idUserSkill, sankhyaId, skillEntity, updated_at, userEntity);
+		return Objects.hash(created_at, idUserSkill, sankhyaId, updated_at);
 	}
 
 	@Override
@@ -136,17 +98,14 @@ public class UserSkillEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		UserSkillEntity other = (UserSkillEntity) obj;
-		return Objects.equals(SkillId, other.SkillId) && Objects.equals(UserId, other.UserId)
-				&& Objects.equals(created_at, other.created_at) && Objects.equals(idUserSkill, other.idUserSkill)
-				&& Objects.equals(sankhyaId, other.sankhyaId) && Objects.equals(skillEntity, other.skillEntity)
-				&& Objects.equals(updated_at, other.updated_at) && Objects.equals(userEntity, other.userEntity);
+		return Objects.equals(created_at, other.created_at) && Objects.equals(idUserSkill, other.idUserSkill)
+				&& Objects.equals(sankhyaId, other.sankhyaId) && Objects.equals(updated_at, other.updated_at);
 	}
 
 	@Override
 	public String toString() {
 		return "UserSkillEntity [idUserSkill=" + idUserSkill + ", sankhyaId=" + sankhyaId + ", created_at=" + created_at
-				+ ", updated_at=" + updated_at + ", UserId=" + UserId + ", SkillId=" + SkillId + ", skillEntity="
-				+ skillEntity + ", userEntity=" + userEntity + "]";
+				+ ", updated_at=" + updated_at + "]";
 	}
 	
 }
