@@ -22,7 +22,7 @@ public class UserEntity {
 	@Id
 	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
 	@ApiModelProperty(value = "Identificador único do usuário")
-	private Long idUser;
+	private Long id;
 	
 	@Column (name = "login", length = 12, nullable= false )	
 	@Size(max=12)
@@ -45,20 +45,20 @@ public class UserEntity {
 		super();
 	}
 
-	public UserEntity(Long idUser, String login, String password, LocalDate lastLoginDate) {
+	public UserEntity(Long id, String login, String password, LocalDate lastLoginDate) {
 		super();
-		this.idUser = idUser;
+		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.lastLoginDate = lastLoginDate;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setIdUser(Long id) {
+		this.id = id;
 	}
 
 	public String getLogin() {
@@ -87,7 +87,7 @@ public class UserEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idUser, lastLoginDate, login, password);
+		return Objects.hash(id, lastLoginDate, login, password);
 	}
 
 	@Override
@@ -99,13 +99,13 @@ public class UserEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		UserEntity other = (UserEntity) obj;
-		return Objects.equals(idUser, other.idUser) && Objects.equals(lastLoginDate, other.lastLoginDate)
+		return Objects.equals(id, other.id) && Objects.equals(lastLoginDate, other.lastLoginDate)
 				&& Objects.equals(login, other.login) && Objects.equals(password, other.password);
 	}
 
 	@Override
 	public String toString() {
-		return "UserEntity [idUser=" + idUser + ", login=" + login + ", password=" + password + ", lastLoginDate="
+		return "UserEntity [idUser=" + id + ", login=" + login + ", password=" + password + ", lastLoginDate="
 				+ lastLoginDate + "]";
 	}
 	
