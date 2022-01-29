@@ -1,7 +1,6 @@
 package org.neki.backend.projetoNeki.controller;
 
 import java.util.List;
-import javax.validation.Valid;
 
 import org.neki.backend.projetoNeki.service.UserService;
 import org.neki.backend.projetoNeki.vo.UserExibirVO;
