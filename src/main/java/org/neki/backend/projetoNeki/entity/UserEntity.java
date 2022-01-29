@@ -20,7 +20,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserEntity {
 
 	@Id
-	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column (name = "id")
 	@ApiModelProperty(value = "Identificador único do usuário")
 	private Long id;
 	

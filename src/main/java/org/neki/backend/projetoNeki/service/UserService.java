@@ -10,8 +10,8 @@ import org.neki.backend.projetoNeki.repository.UserRepository;
 import org.neki.backend.projetoNeki.vo.UserExibirVO;
 import org.neki.backend.projetoNeki.vo.UserInserirVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class UserService {
@@ -36,12 +36,13 @@ public class UserService {
 		UserEntity user = new UserEntity();
 		
 		user.setLogin(userInserirVO.getLogin());
-		user.setPassword(userInserirVO.getPassword());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(userInserirVO.getPassword()));
 		user.setLastLoginDate(LocalDate.now());
 
-		user = userRepository.save(user);
+		UserEntity user2 = userRepository.save(user);
 		
-		return new UserExibirVO(user);
+		return new UserExibirVO(user2);
 	}
 	
 	// Listagem de Skills por id do usuário	
