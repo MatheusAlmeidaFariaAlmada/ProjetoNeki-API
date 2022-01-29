@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
@@ -39,6 +41,7 @@ public class UserEntity {
 	@ApiModelProperty(value="Data de Login")
 	private LocalDate lastLoginDate;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userEntity")
 	private List<UserEntity> userEntity;
 
