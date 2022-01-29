@@ -54,7 +54,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "Erros interno do servidor"),
 			@ApiResponse(code = 505, message = "Ocorreu uma exceção") })
 	
-	public UserExibirVO inserir(@Valid @RequestBody UserInserirVO userInserirVO){
+	public UserExibirVO inserir(@RequestBody UserInserirVO userInserirVO){
 		UserExibirVO userExibirVO = userService.inserirService(userInserirVO);
 		return userExibirVO;
 	}
