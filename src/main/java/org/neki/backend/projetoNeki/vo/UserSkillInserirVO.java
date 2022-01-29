@@ -6,7 +6,7 @@ import org.neki.backend.projetoNeki.entity.SkillEntity;
 import org.neki.backend.projetoNeki.entity.UserEntity;
 import org.neki.backend.projetoNeki.entity.UserSkillEntity;
 
-public class UserSkillExibirVO {
+public class UserSkillInserirVO {
 
 	private Long id;
 	private Long knowledgeLevel;
@@ -15,11 +15,11 @@ public class UserSkillExibirVO {
 	private SkillEntity skillEntity;
 	private UserEntity userEntity;
 	
-	public UserSkillExibirVO() {
+	public UserSkillInserirVO() {
 		super();
 	}
 
-	public UserSkillExibirVO(Long id, Long knowledgeLevel, LocalDate created_at, LocalDate updated_at,
+	public UserSkillInserirVO(Long id, Long knowledgeLevel, LocalDate created_at, LocalDate updated_at,
 			SkillEntity skillEntity, UserEntity userEntity) {
 		super();
 		this.id = id;
@@ -29,8 +29,8 @@ public class UserSkillExibirVO {
 		this.skillEntity = skillEntity;
 		this.userEntity = userEntity;
 	}
-
-	public UserSkillExibirVO(UserSkillEntity userSkillEntity) {
+	
+	public UserSkillInserirVO(UserSkillEntity userSkillEntity) {
 		super();
 		this.id = userSkillEntity.getId();
 		this.knowledgeLevel = userSkillEntity.getKnowledgeLevel();

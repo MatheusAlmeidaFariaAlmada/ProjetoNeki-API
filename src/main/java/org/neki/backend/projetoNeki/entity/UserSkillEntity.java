@@ -20,7 +20,7 @@ public class UserSkillEntity {
 
 	@Id
 	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
-	private Long idUserSkill;
+	private Long id;
 	
 	@Column (name = "knowledge_level", nullable= false )	
 	@ApiModelProperty(value="Nivel de conhecimento")
@@ -46,10 +46,10 @@ public class UserSkillEntity {
 		super();
 	}
 
-	public UserSkillEntity(Long idUserSkill, Long knowledgeLevel, LocalDate created_at, LocalDate updated_at,
+	public UserSkillEntity(Long id, Long knowledgeLevel, LocalDate created_at, LocalDate updated_at,
 			SkillEntity skillEntity, UserEntity userEntity) {
 		super();
-		this.idUserSkill = idUserSkill;
+		this.id = id;
 		this.knowledgeLevel = knowledgeLevel;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
@@ -57,12 +57,12 @@ public class UserSkillEntity {
 		this.userEntity = userEntity;
 	}
 
-	public Long getIdUserSkill() {
-		return idUserSkill;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUserSkill(Long idUserSkill) {
-		this.idUserSkill = idUserSkill;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getKnowledgeLevel() {
@@ -107,7 +107,7 @@ public class UserSkillEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(created_at, idUserSkill, knowledgeLevel, skillEntity, updated_at, userEntity);
+		return Objects.hash(created_at, id, knowledgeLevel, skillEntity, updated_at, userEntity);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class UserSkillEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		UserSkillEntity other = (UserSkillEntity) obj;
-		return Objects.equals(created_at, other.created_at) && Objects.equals(idUserSkill, other.idUserSkill)
+		return Objects.equals(created_at, other.created_at) && Objects.equals(id, other.id)
 				&& Objects.equals(knowledgeLevel, other.knowledgeLevel)
 				&& Objects.equals(skillEntity, other.skillEntity) && Objects.equals(updated_at, other.updated_at)
 				&& Objects.equals(userEntity, other.userEntity);
@@ -127,7 +127,7 @@ public class UserSkillEntity {
 
 	@Override
 	public String toString() {
-		return "UserSkillEntity [idUserSkill=" + idUserSkill + ", knowledgeLevel=" + knowledgeLevel + ", created_at="
+		return "UserSkillEntity [id=" + id + ", knowledgeLevel=" + knowledgeLevel + ", created_at="
 				+ created_at + ", updated_at=" + updated_at + ", skillEntity=" + skillEntity + ", userEntity="
 				+ userEntity + "]";
 	}
