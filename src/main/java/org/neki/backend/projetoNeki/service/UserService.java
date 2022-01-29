@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.neki.backend.projetoNeki.config.GlobalException;
 import org.neki.backend.projetoNeki.entity.UserEntity;
 import org.neki.backend.projetoNeki.repository.UserRepository;
 import org.neki.backend.projetoNeki.vo.UserExibirVO;
 import org.neki.backend.projetoNeki.vo.UserInserirVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +20,9 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	// Listar todos
 	public List<UserExibirVO> buscarTodosService() {
@@ -52,5 +57,26 @@ public class UserService {
 			return null;
 		}
 		return new UserExibirVO(user.get());
+	}
+	
+	//login
+	public void updateLastLogin(Long id) {
+//		UserEntity user = findById(id);
+//		user.setLastLoginDate(LocalDate.now());
+//		userRepository.save(user);
+	}
+	
+	//login
+	public UserEntity login (UserEntity user) {
+		if(userRepository.findByLogin(user.getLogin()) == null) {
+			throw new GlobalException("Usuário não encontrado");
+		}
+		UserEntity usr = userRepository.findByLogin(user.getLogin());
+		if(passwordEncoder.matches(user.getPassword(), usr.getPassword())) {
+			updateLastLogin(usr.getId());
+			return usr;
+		} else {
+			throw new GlobalException("Senha inválida");
+		}
 	}
 }
