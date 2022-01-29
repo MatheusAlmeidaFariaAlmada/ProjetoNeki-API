@@ -2,6 +2,7 @@ package org.neki.backend.projetoNeki.controller;
 
 import java.util.List;
 
+import org.neki.backend.projetoNeki.entity.UserEntity;
 import org.neki.backend.projetoNeki.service.UserService;
 import org.neki.backend.projetoNeki.vo.UserExibirVO;
 import org.neki.backend.projetoNeki.vo.UserInserirVO;
@@ -75,4 +76,11 @@ public class UserController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	// login
+	@PostMapping("/login")
+	private UserEntity login(@RequestBody UserEntity userEntity){
+		return userService.login(userEntity);
+	}
+	
 }
