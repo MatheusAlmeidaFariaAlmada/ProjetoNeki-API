@@ -7,7 +7,9 @@ import org.neki.backend.projetoNeki.vo.SkillExibirVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,4 +39,22 @@ public class SkillController {
 		List<SkillExibirVO> listaArquivo = skillService.buscarTodosService();
 		return ResponseEntity.ok(listaArquivo);	
 	}
+	
+	// Deletar
+	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deletar determinada skill", notes = "Deletar skill")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Arquivo deletado com sucesso"),
+			@ApiResponse(code = 204, message = "Sem Conteúdo"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar o recurso"),
+			@ApiResponse(code = 500, message = "Erros interno do servidor"),
+			@ApiResponse(code = 505, message = "Ocorreu uma exceção") })
+	
+	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+		if (!skillService.deletarService(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.noContent().build();
+	}
+	
 }

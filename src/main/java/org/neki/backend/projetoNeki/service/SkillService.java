@@ -26,4 +26,13 @@ public class SkillService {
 		}
 		return skillExibirVO;
 	}
+	
+	// Deletar
+	public boolean deletarService(Long id) {
+		if (!skillRepository.existsById(id)) {
+			return false;
+		}
+		skillRepository.deleteById(id);
+		return true;
+	}
 }

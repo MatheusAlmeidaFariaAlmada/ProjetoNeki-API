@@ -56,5 +56,12 @@ public class UserSkillService {
 	}
 	
 	// Esse serviço deve receber o id da associação da skill e excluir da base de dados
+	public boolean deletarService(Long id) {
+		if (!userSkillRepository.existsById(id)) {
+			return false;
+		}
+		userSkillRepository.deleteById(id);
+		return true;
+	}
 	
 }
