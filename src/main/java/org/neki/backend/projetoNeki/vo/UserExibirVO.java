@@ -1,9 +1,7 @@
 package org.neki.backend.projetoNeki.vo;
 
 import java.time.LocalDate;
-
 import org.neki.backend.projetoNeki.entity.UserEntity;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserExibirVO {
