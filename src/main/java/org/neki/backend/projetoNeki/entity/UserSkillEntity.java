@@ -19,7 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserSkillEntity {
 
 	@Id
-	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column (name = "id")
 	private Long id;
 	
 	@Column (name = "knowledge_level", nullable= false )	

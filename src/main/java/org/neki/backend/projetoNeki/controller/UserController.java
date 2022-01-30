@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -78,6 +79,25 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	// Atualizar
+	@PutMapping("/{id}")
+	@ApiOperation(value = "Atualizar usuário", notes = "Atualizar usuário")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Usuário atualizado com sucesso"),
+			@ApiResponse(code = 201, message = "Categoria criado com sucesso"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar o recurso"),
+			@ApiResponse(code = 404, message = "Recurso Indisponivel"),
+			@ApiResponse(code = 500, message = "Erros interno do servidor"),
+			@ApiResponse(code = 505, message = "Ocorreu uma exceção") })
+
+	public ResponseEntity<UserExibirVO> atualizar( @PathVariable Long id, @RequestBody UserInserirVO userInserirVO){
+		UserExibirVO userExibirVO = userService.atualizar(id, userInserirVO);
+		if (userExibirVO == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(userExibirVO);
 	}
 	
 	// Deletar

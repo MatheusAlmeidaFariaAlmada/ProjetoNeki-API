@@ -50,7 +50,23 @@ public class UserService {
 		return new UserExibirVO(user2);
 	}
 	
-	// Deletar
+	// Service atualizar
+	public UserExibirVO atualizar(Long id, UserInserirVO userInserirVO) {
+		UserEntity user = new UserEntity();
+		if (!userRepository.existsById(id)) {
+			return null;
+		}
+		user.setLogin(userInserirVO.getLogin());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(userInserirVO.getPassword()));
+		user.setLastLoginDate(LocalDate.now());
+
+		UserEntity user2 = userRepository.save(user);
+		
+		return new UserExibirVO(user2);
+	}
+	
+	// Service deletar
 	public boolean deletarService(Long id) {
 		if (!userRepository.existsById(id)) {
 			return false;
