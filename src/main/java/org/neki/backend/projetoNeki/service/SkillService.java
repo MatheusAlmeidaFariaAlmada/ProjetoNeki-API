@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.neki.backend.projetoNeki.entity.SkillEntity;
-import org.neki.backend.projetoNeki.entity.UserSkillEntity;
 import org.neki.backend.projetoNeki.repository.SkillRepository;
 import org.neki.backend.projetoNeki.vo.SkillExibirVO;
+import org.neki.backend.projetoNeki.vo.SkillInserirVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +36,21 @@ public class SkillService {
 			return null;
 		}
 		return new SkillExibirVO(skillEntity.get());
+	}
+	
+	// Service inserir
+	public SkillExibirVO inserirService (SkillInserirVO skillInserirVO) {
+		SkillEntity skillEntity = new SkillEntity();
+		
+		skillEntity.setIdSkill(skillInserirVO.getId());
+		skillEntity.setName(skillInserirVO.getName());
+		skillEntity.setVersion(skillInserirVO.getVersion());
+		skillEntity.setDescription(skillInserirVO.getDescription());
+		skillEntity.setImageUrl(skillInserirVO.getImageUrl());
+		
+		SkillEntity skillEntity2 = skillRepository.save(skillEntity);
+		
+		return new SkillExibirVO (skillEntity2);
 	}
 	
 	// Deletar
