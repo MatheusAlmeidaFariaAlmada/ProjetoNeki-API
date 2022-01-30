@@ -19,7 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class SkillEntity {
 
 	@Id
-	@GeneratedValue(generator = "id", strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column (name = "id")
 	@ApiModelProperty(value = "Identificador único de habilidade")
 	private Long id;
 	

@@ -11,6 +11,7 @@ import org.neki.backend.projetoNeki.vo.SkillInserirVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class SkillService {
 	
@@ -53,7 +54,24 @@ public class SkillService {
 		return new SkillExibirVO (skillEntity2);
 	}
 	
-	// Deletar
+	// Service atualizar
+	public SkillExibirVO atualizar(Long id, SkillInserirVO skillInserirVO) {
+		SkillEntity skillEntity = new SkillEntity();
+		if (!skillRepository.existsById(id)) {
+			return null;
+		}
+		skillEntity.setIdSkill(skillInserirVO.getId());
+		skillEntity.setName(skillInserirVO.getName());
+		skillEntity.setVersion(skillInserirVO.getVersion());
+		skillEntity.setDescription(skillInserirVO.getDescription());
+		skillEntity.setImageUrl(skillInserirVO.getImageUrl());
+		
+		SkillEntity skillEntity2 = skillRepository.save(skillEntity);
+		
+		return new SkillExibirVO (skillEntity2);
+	}
+	
+	// Service deletar
 	public boolean deletarService(Long id) {
 		if (!skillRepository.existsById(id)) {
 			return false;
