@@ -38,6 +38,21 @@ public class UserSkillService {
 		return new UserSkillExibirVO(userSkillEntity.get());
 	}
 	
+	// Inserir
+	public UserSkillExibirVO inserirService (UserSkillInserirVO userSkillInserirVO) {
+		UserSkillEntity userSkillEntity = new UserSkillEntity();
+		
+		userSkillEntity.setKnowledgeLevel(userSkillInserirVO.getKnowledgeLevel());
+		userSkillEntity.setUpdated_at(userSkillInserirVO.getUpdated_at());
+		userSkillEntity.setCreated_at(userSkillInserirVO.getCreated_at());
+		userSkillEntity.setSkillEntity(userSkillInserirVO.getSkillEntity());
+		userSkillEntity.setUserEntity(userSkillInserirVO.getUserEntity());
+		
+		userSkillEntity = userSkillRepository.save(userSkillEntity);
+		
+		return new UserSkillExibirVO(userSkillEntity);
+	}
+	
 	// Esse serviço deve receber o id da associação da skill e o level para atualização na base de dados
 	public UserSkillExibirVO atualizar(Long id, UserSkillInserirVO userSkillInserirVO) {
 		UserSkillEntity userSkillEntity = new UserSkillEntity();
