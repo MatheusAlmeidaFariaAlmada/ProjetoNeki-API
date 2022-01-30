@@ -124,5 +124,4 @@ public class SkillEntity {
 		return "SkillEntity [id=" + id + ", name=" + name + ", version=" + version + ", description="
 				+ description + ", imageUrl=" + imageUrl + "]";
 	}
-
 }

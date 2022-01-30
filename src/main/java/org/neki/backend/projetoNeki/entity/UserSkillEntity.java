@@ -132,5 +132,4 @@ public class UserSkillEntity {
 				+ created_at + ", updated_at=" + updated_at + ", skillEntity=" + skillEntity + ", userEntity="
 				+ userEntity + "]";
 	}
-	
 }
