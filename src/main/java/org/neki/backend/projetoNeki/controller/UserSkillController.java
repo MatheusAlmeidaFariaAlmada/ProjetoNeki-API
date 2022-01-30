@@ -44,7 +44,7 @@ public class UserSkillController {
 	
 	// Esse serviço deve receber o id do usuário e retornar todas as skills associadas a ele
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Buscar skill por ID dp usuário", notes = "Buscar skill por ID dp usuário")
+	@ApiOperation(value = "Buscar skill por ID do usuário", notes = "Buscar skill por ID do usuário")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Skill encontrada com sucesso"),
 			@ApiResponse(code = 401, message = "Erro de autenticação"),
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar o recurso"),

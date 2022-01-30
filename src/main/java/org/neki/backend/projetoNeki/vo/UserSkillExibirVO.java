@@ -6,11 +6,15 @@ import org.neki.backend.projetoNeki.entity.SkillEntity;
 import org.neki.backend.projetoNeki.entity.UserEntity;
 import org.neki.backend.projetoNeki.entity.UserSkillEntity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class UserSkillExibirVO {
 
 	private Long id;
 	private Long knowledgeLevel;
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate created_at;
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate updated_at;
 	private SkillEntity skillEntity;
 	private UserEntity userEntity;
