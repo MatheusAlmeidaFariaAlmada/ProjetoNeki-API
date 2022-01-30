@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
@@ -112,5 +111,4 @@ public class UserEntity {
 		return "UserEntity [idUser=" + id + ", login=" + login + ", password=" + password + ", lastLoginDate="
 				+ lastLoginDate + "]";
 	}
-	
 }

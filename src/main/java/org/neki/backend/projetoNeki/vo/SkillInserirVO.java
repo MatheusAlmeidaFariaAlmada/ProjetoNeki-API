@@ -1,7 +1,5 @@
 package org.neki.backend.projetoNeki.vo;
 
-import java.util.List;
-
 import org.neki.backend.projetoNeki.entity.SkillEntity;
 
 public class SkillInserirVO {
