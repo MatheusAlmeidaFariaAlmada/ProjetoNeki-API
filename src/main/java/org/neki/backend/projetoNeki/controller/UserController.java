@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,6 +78,23 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	// Deletar
+	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deletar determinada skill", notes = "Deletar skill")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Arquivo deletado com sucesso"),
+			@ApiResponse(code = 204, message = "Sem Conteúdo"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar o recurso"),
+			@ApiResponse(code = 500, message = "Erros interno do servidor"),
+			@ApiResponse(code = 505, message = "Ocorreu uma exceção") })
+	
+	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+		if (!userService.deletarService(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.noContent().build();
 	}
 	
 	// login

@@ -50,6 +50,15 @@ public class UserService {
 		return new UserExibirVO(user2);
 	}
 	
+	// Deletar
+	public boolean deletarService(Long id) {
+		if (!userRepository.existsById(id)) {
+			return false;
+		}
+		userRepository.deleteById(id);
+		return true;
+	}
+	
 	// Listagem de Skills por id do usuário	
 	public UserExibirVO listarPorIdService(Long id) {
 		Optional<UserEntity> user = userRepository.findById(id);
